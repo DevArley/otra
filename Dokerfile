@@ -1,0 +1,14 @@
+# Usa la imagen oficial de Nginx como base
+FROM nginx:alpine
+
+# Elimina cualquier archivo por defecto de Nginx en el directorio de HTML
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copia los archivos de tu proyecto al directorio predeterminado de Nginx
+COPY ./proyecto /usr/share/nginx/html/
+
+# Exponer el puerto 80 para servir tu sitio
+EXPOSE 80
+
+# Iniciar el servidor Nginx
+CMD ["nginx", "-g", "daemon off;"]
